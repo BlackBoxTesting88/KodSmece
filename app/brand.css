@@ -1,0 +1,282 @@
+/* Restaurant-supplied identity: charcoal/orange gyros and pink/blue crêpes. */
+:root {
+  color-scheme: dark;
+  --header-height: 98px;
+  --paper: #070707;
+  --ink: #fff5e9;
+  --brand-orange: #fd8922;
+  --brand-orange-ink: #fd8922;
+  --signal: #fd8922;
+  --line: #ffffff29;
+  --sweet-pink: #f0a7ad;
+  --sweet-blue: #8bd3ed;
+}
+body { background: var(--paper); color: var(--ink); overflow-x: clip; }
+::selection { background: var(--brand-orange); color: #070707; }
+.top:not(.footer) { background: #070707; color: var(--ink); border-color: #ffffff20; padding-block: 8px; }
+.top .logo, .site-footer .logo { display: block; line-height: 0; flex-shrink: 0; }
+.brand-logo { display: block; width: clamp(172px, 19vw, 240px); height: auto; object-fit: contain; mix-blend-mode: screen; }
+.top .order { background: var(--brand-orange); color: #070707; padding: 12px 23px; }
+.top .order:hover { background: #fff5e9; color: #070707; }
+.top nav a { color: #f9eee3; }
+.top nav a:hover { color: var(--brand-orange); }
+.site-footer { background: #070707; color: var(--ink); }
+.site-footer .brand-logo { width: clamp(140px, 15vw, 190px); }
+.footer-brand > .footer-link, .hours-status { color: #c8beb5; }
+.footer-location .eyebrow { color: var(--brand-orange); }
+.footer-delivery { border-color: var(--brand-orange); }
+.footer-delivery:hover { background: var(--brand-orange); color: #070707; }
+.footer-socials { color: #f9eee3; }
+
+.gyros-story { --progress: 0; --turn-progress: 0; height: calc(225svh - var(--header-height)); background: #070707; }
+.gyros-stage {
+  isolation: isolate; position: sticky; top: 0; height: calc(100svh - var(--header-height));
+  min-height: 540px; overflow: hidden; background: #070707; color: #fff5e9;
+}
+.gyros-stage::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 60%, #fd892216, transparent 57%);
+}
+.gyros-stage::after {
+  content: ''; position: absolute; width: min(65vw, 850px); aspect-ratio: 1;
+  top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #fd892220;
+  border-radius: 50%; pointer-events: none; z-index: -1;
+}
+.gyros-heading { position: absolute; z-index: 1; left: 50%; top: -8%; width: min(94vw, 1160px); transform: translateX(-50%); opacity: calc(1 - var(--progress) * 1.8); pointer-events: none; }
+.gyros-kicker { text-align: center; color: #d6c3b1; font: 500 10px/1.2 var(--body); letter-spacing: .24em; }
+.gyros-heading h1 { margin: 0; }
+.gyros-name-arc { display: block; width: 100%; height: auto; overflow: visible; }
+.gyros-name-arc text { font: 900 109px var(--display); fill: var(--brand-orange); stroke: #fff6eb; stroke-width: 3px; stroke-linejoin: round; paint-order: stroke fill; }
+.gyros-diagram { --size: min(56vw, 75svh, 670px); position: absolute; inset-block: 0; left: calc(50% - var(--progress) * 8%); width: var(--size); transform: translateX(-50%); z-index: 2; pointer-events: none; }
+ .gyros-closed, .gyros-pieces {
+  position: absolute; inset: 0; backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; will-change: transform;
+}
+.gyros-closed { transform: perspective(1100px) rotateY(calc(var(--turn-progress) * 180deg)); }
+.gyros-pieces { transform: perspective(1100px) rotateY(calc(var(--turn-progress) * 180deg - 180deg)); }
+.gyros-whole { position: absolute; inset: 14% 0 auto; width: 100%; height: 84%; object-fit: contain; transform: scale(calc(1 - var(--progress) * .3)) rotate(-12deg); filter: drop-shadow(0 20px 22px #0009); }
+.gyros-layer { position: absolute; inset-inline: 0; top: calc((1 - var(--progress)) * var(--closed-y) + var(--progress) * var(--open-y)); transform: translateY(-50%); z-index: var(--depth); }
+.gyros-sprite { display: block; width: 100%; aspect-ratio: 1; background: url('../public/assets/gyros-atlas.png') var(--sprite-x) var(--sprite-y) / 200% 300% no-repeat; }
+.gyros-layer > .gyros-sprite { transform: perspective(700px) rotateX(calc(55deg * var(--progress))) scale(calc(.48 - var(--progress) * .17)) rotate(calc(var(--turn) * var(--progress))); filter: drop-shadow(0 12px 13px #0009); }
+.sprite-fries { --sprite-x: 0%; --sprite-y: 0%; }
+.sprite-meat { --sprite-x: 100%; --sprite-y: 0%; }
+.sprite-tomato { --sprite-x: 0%; --sprite-y: 50%; }
+.sprite-greens { --sprite-x: 100%; --sprite-y: 50%; }
+.sprite-sauce { --sprite-x: 0%; --sprite-y: 100%; }
+.sprite-pita { --sprite-x: 100%; --sprite-y: 100%; }
+.gyros-fries { --closed-y: 36%; --open-y: 13%; --depth: 6; --turn: -9deg; }
+.gyros-meat { --closed-y: 43%; --open-y: 27%; --depth: 5; --turn: 5deg; }
+.gyros-tomato { --closed-y: 48%; --open-y: 41%; --depth: 4; --turn: -8deg; }
+.gyros-greens { --closed-y: 51%; --open-y: 55%; --depth: 3; --turn: 7deg; }
+.gyros-sauce { --closed-y: 53%; --open-y: 66%; --depth: 2; --turn: -4deg; }
+.gyros-pita { --closed-y: 61%; --open-y: 83%; --depth: 1; --turn: 5deg; }
+.gyros-pita > .gyros-sprite { transform: scale(calc(.48 - var(--progress) * .28)) rotate(calc(var(--turn) * var(--progress))); }
+.gyros-layer-note { position: absolute; top: 50%; left: 81%; display: flex; align-items: center; gap: 13px; width: clamp(210px, 21vw, 270px); transform: translateY(-50%); font-size: clamp(11px, 1.2vw, 16px); font-weight: 500; color: #fff1e4; opacity: clamp(0, calc(var(--progress) * 2.5 - 1), 1); }
+.gyros-layer-note i { width: 34px; flex-shrink: 0; border-top: 1px solid var(--brand-orange); }
+.gyros-layer-note small { display: block; color: var(--brand-orange); font: 500 10px/1.5 ui-monospace, monospace; }
+.gyros-seal { position: absolute; z-index: 3; padding: 16px 27px 20px; border: 2px solid #fff4e9; border-radius: 50%; text-align: center; color: #080808; background: var(--brand-orange); font: 900 clamp(24px, 3.5vw, 50px)/.83 var(--display); opacity: calc(1 - var(--progress) * 2); pointer-events: none; }
+.gyros-seal-left { left: 9%; top: 48%; transform: rotate(-12deg); }
+.gyros-seal-right { right: 8%; top: 62%; transform: rotate(11deg); background: #fff4e9; border-color: var(--brand-orange); }
+.gyros-side-note { position: absolute; left: 8%; bottom: 18%; font: 900 clamp(15px, 1.65vw, 25px)/.95 var(--display); opacity: calc(1 - var(--progress) * 2); }
+.gyros-side-note span { color: var(--brand-orange); }
+.gyros-controls { position: absolute; bottom: 20px; inset-inline: 5vw; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid #ffffff25; padding-top: 13px; z-index: 4; }
+.gyros-index { display: flex; align-items: center; gap: 10px; font: 500 10px/1.1 ui-monospace, monospace; color: #d0bca9; }
+.gyros-index i { display: block; width: 75px; height: 1px; background: #ffffff30; }
+.gyros-index b { display: block; width: calc(var(--progress) * 100%); height: 1px; background: var(--brand-orange); }
+.gyros-toggle { border: 0; background: none; padding: 8px 0; color: #fff4e9; font: 500 13px/1 var(--body); cursor: pointer; }
+.gyros-toggle span { display: inline-block; color: var(--brand-orange); margin-left: 12px; transition: transform .3s; }
+.gyros-toggle[aria-pressed='true'] span { transform: rotate(180deg); }
+.gyros-order { display: inline-flex; gap: 24px; font-size: 13px; color: var(--brand-orange); }
+.gyros-order:hover { color: #fff4e9; }
+
+.street-poster { background: #070707; color: #f8eee3; padding-top: clamp(45px, 7vw, 100px); }
+.street-poster .eyebrow { color: #a99787; letter-spacing: .1em; font-size: 11px; }
+.street-poster h2 { color: var(--brand-orange); }
+.street-poster h2 em { color: #fff1e3; }
+.poster-photos figure { border-color: #fdf2e4; box-shadow: 0 20px 35px #0008; }
+.poster-link { color: #070707; background: var(--brand-orange); }
+.poster-link:hover { color: #070707; background: #fff1e3; }
+.kitchen { background: var(--brand-orange); color: #070707; }
+.kitchen-head h2, .kitchen-head h2 span { color: #070707; }
+.kitchen-head .eyebrow, .kitchen-head > p { color: #21150d; }
+.chapter { color: #fff5e9; }
+.chapter-burger { --tone: #25201b; }
+.chapter-giros { --tone: #070707; }
+.chapter-slatko { --tone: #f0a7ad; color: #251923; }
+.chapter-slatko .chapter-mark { color: #251923; }
+.chapter-slatko .chapter-meta { color: #251923; }
+.chapter-slatko .chapter-title { color: #251923; }
+.chapter + .chapter { border-color: #ffffff26; }
+.chapter-trigger:focus-visible { outline-color: #fff5e9; }
+.flavor-poster { background: #070707; }
+.flavor-poster::before { background: #070707; mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 68Q173 10 345 61T700 55T1050 52Q1220 88 1440 27V100H0Z'/%3E%3C/svg%3E") center bottom / 100% 100% no-repeat; }
+.flavor-poster .poster-sticker, .bite-scene .poster-sticker { color: #070707; background: var(--brand-orange); }
+.flavor-inner h2, .bite-copy h2 { -webkit-text-stroke: 2px #070707; color: var(--brand-orange); }
+.flavor-inner h2 span:nth-child(2) { color: #fff2e5; }
+.flavor-index { color: #a9927e; }
+.flavor-ingredient .gyros-sprite { filter: drop-shadow(0 12px 15px #0009); }
+.flavor-ingredient { width: clamp(130px, 28vw, 450px); }
+.flavor-ingredient.flavor-greens { top: 3%; left: -2%; }
+.flavor-ingredient.flavor-bun { top: 22%; right: -1%; }
+.flavor-ingredient.flavor-cheese { bottom: 8%; left: 0; }
+.flavor-ingredient.flavor-patty { bottom: 0; right: 0; }
+.sweet-feature { position: relative; isolation: isolate; max-width: none; background: linear-gradient(108deg, #f0a7ad 0%, #f0a7ad 46%, #8bd3ed 46.1%, #8bd3ed 100%); color: #251923; padding-block: clamp(60px, 8vw, 125px); }
+.sweet-feature::before { content: ''; position: absolute; inset: -1px -1px auto; height: 26px; background: #070707; clip-path: polygon(0 0,100% 0,100% 40%,90% 20%,80% 65%,68% 30%,55% 75%,45% 50%,30% 80%,15% 35%,0 70%); }
+.sweet-feature::after { content: ''; position: absolute; inset: auto 0 -1px; height: 25px; background: #070707; clip-path: polygon(0 55%,15% 80%,28% 40%,45% 75%,60% 35%,75% 70%,90% 40%,100% 65%,100% 100%,0 100%); }
+.sweet-feature .brand-logo { width: min(100%, 390px); border-radius: 10px; mix-blend-mode: normal; margin-bottom: 24px; }
+.sweet-feature .poster-sticker { background: #111; color: #8bd3ed; }
+.sweet-copy h2 { color: #251923; -webkit-text-stroke: 3px #ffe6d0; }
+.sweet-link { color: #251923; }
+.sweet-link:hover { color: #6a3048; }
+.sweet-photos figure { background: #ffe8d5; box-shadow: 0 14px 28px #51263b38; }
+.bite-scene { background: #070707; color: #fff2e5; }
+.bite-copy > p:not(.poster-sticker) { color: #cdbfaf; }
+.bite-order { background: var(--brand-orange); color: #070707; border-color: #fff1e3; }
+.bite-order:hover { background: #fff1e3; color: #070707; }
+.album-all { color: #fff1e3; }
+.album-all:hover { color: var(--brand-orange); }
+.bite-photo figcaption { background: var(--brand-orange); color: #070707; }
+.album-dialog, .album-dialog header { background: #070707; color: #fff5e9; }
+
+/* Carry the identity through the menu, basket and delivery form. */
+body .shop-page { --shop-light: #191715; --shop-line: #ffffff26; background: #070707; color: #fff2e5; }
+.shop-page .shop-tabs { background: #070707f5; border-color: #ffffff26; }
+.shop-page .shop-tabs a { color: var(--brand-orange); }
+.shop-page .shop-tabs a span { color: #cdbfaf; }
+.shop-page .shop-tabs a:hover { background: #292018; }
+.shop-page .shop-masthead h1, .shop-page .checkout-heading h1 { color: var(--brand-orange); -webkit-text-stroke: 2px #070707; }
+.shop-page .shop-masthead .poster-sticker { background: var(--brand-orange); color: #070707; }
+.shop-page .shop-cart-link, .shop-page .checkout-back { color: var(--brand-orange); border-color: #fd892260; }
+.shop-page .shop-cart-link span { color: #070707; }
+.shop-page .shop-masthead-image { background: #fff1e3; }
+.shop-page .shop-category { --category-tone: #171411; border: 1px solid #fd892238; }
+.shop-page .shop-gyros { --category-tone: #17100b; }
+.shop-page .shop-category header > span { color: #cdbfaf; }
+.shop-page .shop-category h2 { color: var(--brand-orange); }
+.shop-page .shop-sweets { --category-tone: #f0a7ad; border-color: #8bd3ed; color: #251923; }
+.shop-page .shop-sweets header > span, .shop-page .shop-sweets h2 { color: #251923; }
+.shop-page .shop-sweets .product-card { background: #ffe9e3; color: #251923; }
+.shop-page .shop-sweets .product-ingredients { color: #63404d; }
+.shop-page .shop-sweets .product-add { background: #8bd3ed; }
+.shop-page .product-ingredients, .shop-page .shop-empty, .shop-page .shop-receipt-label { color: #c1b3a3; }
+.shop-page .product-price { color: var(--brand-orange); }
+.shop-page .shop-sweets .product-price { color: #251923; }
+.shop-page .product-add { background: var(--brand-orange); color: #070707; }
+.shop-page .product-add:hover { background: #fff2e5; color: #070707; }
+.shop-page .shop-primary { color: #070707; background: var(--brand-orange); }
+.shop-page .shop-primary:hover { color: #070707; background: #fff2e5; }
+.shop-page .checkout-fields input, .shop-page .checkout-fields textarea { background: #0e0d0c; color: #fff2e5; border-color: #ffffff30; }
+.shop-page .fulfillment-choices label:has(:checked) { background: #fd89221b; }
+.shop-page .card-payment-note { background: #fd892212; border-color: #fd892260; }
+.shop-page .card-payment-note p, .shop-page .order-form [data-pickup], .shop-page .delivery-note { color: #c1b3a3; }
+.shop-page .checkout-confirmation { background: #292018; color: #fff2e5; }
+.shop-page .shop-footer, .shop-page .mobile-basket { background: #070707; color: #fff2e5; }
+.shop-footer .brand-logo { width: 145px; }
+
+@media (max-width: 760px) {
+  :root { --header-height: 78px; }
+  .top:not(.footer) { padding: 8px 5vw; gap: 12px; }
+  .top .brand-logo { width: clamp(145px, 36vw, 195px); }
+  .top .order { padding: 10px 15px; }
+  .top nav { gap: 15px; }
+  .top nav a { font-size: 12px; }
+  .gyros-stage { min-height: 500px; }
+  .gyros-heading { width: 97vw; top: 4%; }
+  .gyros-kicker { font-size: 8px; letter-spacing: .18em; }
+  .gyros-name-arc text { stroke-width: 3px; }
+  .gyros-diagram { --size: min(97vw, 67svh); left: calc(50% - var(--progress) * 17%); }
+  .gyros-whole { height: 76%; top: 15%; }
+  .gyros-layer > .gyros-sprite { transform: perspective(650px) rotateX(calc(52deg * var(--progress))) scale(calc(.48 - var(--progress) * .07)) rotate(calc(var(--turn) * var(--progress))); }
+  .gyros-pita > .gyros-sprite { transform: scale(calc(.48 - var(--progress) * .28)) rotate(calc(var(--turn) * var(--progress))); }
+  .gyros-layer-note { left: 76%; width: min(38vw, 160px); font-size: 12px; gap: 7px; }
+  .gyros-layer-note i { width: 17px; }
+  .gyros-layer-note small { font-size: 9px; }
+  .gyros-seal { padding: 11px 15px 14px; font-size: clamp(21px, 4.8vw, 34px); }
+  .gyros-seal-left { left: 3%; top: 42%; }
+  .gyros-seal-right { right: 3%; top: 65%; }
+  .gyros-side-note { left: 5%; bottom: 21%; font-size: 14px; }
+  .gyros-controls { bottom: 16px; inset-inline: 5vw; gap: 13px; }
+  .gyros-index { gap: 6px; font-size: 9px; }
+  .gyros-index i { width: 35px; }
+  .gyros-toggle, .gyros-order { font-size: 11px; }
+  .gyros-order { gap: 7px; }
+  .gyros-toggle span { margin-left: 6px; }
+  .sweet-feature { background: linear-gradient(165deg, #f0a7ad 0%, #f0a7ad 51%, #8bd3ed 51.1%, #8bd3ed 100%); }
+  .sweet-feature .brand-logo { width: min(78vw, 330px); margin-bottom: 22px; }
+  .site-footer .brand-logo { width: 130px; }
+}
+@media (max-width: 500px) {
+  .top nav { display: none; }
+  .gyros-seal-left { top: 43%; }
+  .gyros-side-note { bottom: 18%; font-size: 12px; }
+  .gyros-heading { top: 7%; }
+}
+@media (max-height: 540px) and (orientation: landscape) {
+  .gyros-stage { min-height: 330px; height: 100svh; }
+  .gyros-heading { width: 60vw; top: -2%; }
+  .gyros-kicker, .gyros-side-note { display: none; }
+  .gyros-controls { bottom: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gyros-story { height: auto; }
+  .gyros-stage { position: relative; }
+  .gyros-toggle { text-decoration: underline; text-underline-offset: 4px; }
+}
+
+@media (min-width: 761px) { .chapter:not(.is-active) .chapter-title { font-size: clamp(25px, 18cqi, 72px); } }
+
+/* Bold connected lettering for the crêpes identity. */
+:root { --script: 'Oleo Script', 'Brush Script MT', cursive; }
+.chapter-slatko .chapter-title,
+.sweet-copy h2 em,
+.shop-page .shop-sweets h2,
+.shop-page .shop-sweets .product-copy h3,
+.shop-page .shop-tabs a[href='#palacinke'] {
+  font-family: var(--script);
+  font-weight: 700;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.chapter-slatko .chapter-title { line-height: 1.1; margin-top: 6px; }
+.sweet-copy h2 em { display: inline-block; font-size: clamp(58px, 7.5vw, 116px); line-height: 1.12; color: #251923; -webkit-text-stroke: .35px currentColor; }
+.shop-page .shop-sweets h2 { line-height: 1.12; }
+.shop-page .shop-sweets .product-copy h3 { font-size: clamp(23px, 2.6vw, 36px); line-height: 1.12; }
+.shop-page .shop-tabs a[href='#palacinke'] { line-height: 1.1; }
+@media (min-width: 761px) { .chapter-slatko:not(.is-active) .chapter-title { font-size: clamp(27px, 17cqi, 72px); } }
+
+.gyros-story:not([data-gyros-face='pieces']) .gyros-pieces { visibility: hidden; }
+.gyros-story[data-gyros-face='pieces'] .gyros-closed { visibility: hidden; }
+
+/* A brand statement above the three menu categories. */
+.kitchen-head { grid-template-columns: minmax(0, 1fr) auto; gap: 16px 30px; }
+.kitchen-head h2 { font-size: clamp(58px, 8.5vw, 132px); line-height: .84; letter-spacing: -.025em; }
+.kitchen-head h2 em { display: inline-block; color: #070707; font-family: var(--script); font-weight: 700; font-style: normal; font-size: 1.04em; line-height: 1.04; letter-spacing: 0; }
+.kitchen-head > p { padding-bottom: .35em; line-height: 1.55; }
+.kitchen-head > p strong { font-weight: 700; }
+@media (max-width: 760px) {
+  .kitchen-head { grid-template-columns: 1fr; gap: 15px; }
+  .kitchen-head h2 { font-size: clamp(58px, 12vw, 88px); }
+  .kitchen-head > p { padding-bottom: 0; }
+}
+
+/* The original logo emerges behind the opened ingredients. */
+.gyros-watermark {
+  position: absolute;
+  z-index: 0;
+  top: 49%;
+  left: 48%;
+  width: min(112vw, 1600px);
+  transform: translate(-50%, -50%) rotate(-10deg);
+  opacity: clamp(0, calc((var(--progress) - .25) * .145), .10);
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: screen;
+  mask-image: linear-gradient(90deg, #000 0%, #000 27%, #0007 51%, #0003 70%, #0005 100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 27%, #0007 51%, #0003 70%, #0005 100%);
+}
+.gyros-watermark img { width: 100%; height: auto; object-fit: contain; filter: grayscale(1); }
+.gyros-layer-note { text-shadow: 0 1px 8px #070707; }
+@media (max-width: 760px) {
+  .gyros-watermark { width: 145vw; left: 42%; top: 50%; transform: translate(-50%, -50%) rotate(-21deg); }
+}
