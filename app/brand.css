@@ -28,7 +28,7 @@ body { background: var(--paper); color: var(--ink); overflow-x: clip; }
 .footer-delivery:hover { background: var(--brand-orange); color: #070707; }
 .footer-socials { color: #f9eee3; }
 
-.gyros-story { --progress: 0; --turn-progress: 0; height: calc(225svh - var(--header-height)); background: #070707; }
+.gyros-story { --progress: 0; --spread: 0; --face-width: 1; height: calc(225svh - var(--header-height)); background: #070707; }
 .gyros-stage {
   isolation: isolate; position: sticky; top: 0; height: calc(100svh - var(--header-height));
   min-height: 540px; overflow: hidden; background: #070707; color: #fff5e9;
@@ -47,17 +47,15 @@ body { background: var(--paper); color: var(--ink); overflow-x: clip; }
 .gyros-heading h1 { margin: 0; }
 .gyros-name-arc { display: block; width: 100%; height: auto; overflow: visible; }
 .gyros-name-arc text { font: 900 109px var(--display); fill: var(--brand-orange); stroke: #fff6eb; stroke-width: 3px; stroke-linejoin: round; paint-order: stroke fill; }
-.gyros-diagram { --size: min(56vw, 75svh, 670px); position: absolute; inset-block: 0; left: calc(50% - var(--progress) * 8%); width: var(--size); transform: translateX(-50%); z-index: 2; pointer-events: none; }
- .gyros-closed, .gyros-pieces {
-  position: absolute; inset: 0; backface-visibility: hidden;
-  -webkit-backface-visibility: hidden; will-change: transform;
+.gyros-diagram { --size: min(56vw, 75svh, 670px); position: absolute; inset-block: 0; left: calc(50% - var(--spread) * 8%); width: var(--size); transform: translateX(-50%); z-index: 2; pointer-events: none; }
+.gyros-closed, .gyros-pieces {
+  position: absolute; inset: 0; transform-origin: 50% 50%;
+  transform: scaleX(var(--face-width));
 }
-.gyros-closed { transform: perspective(1100px) rotateY(calc(var(--turn-progress) * 180deg)); }
-.gyros-pieces { transform: perspective(1100px) rotateY(calc(var(--turn-progress) * 180deg - 180deg)); }
 .gyros-whole { position: absolute; inset: 14% 0 auto; width: 100%; height: 84%; object-fit: contain; transform: scale(calc(1 - var(--progress) * .3)) rotate(-12deg); filter: drop-shadow(0 20px 22px #0009); }
-.gyros-layer { position: absolute; inset-inline: 0; top: calc((1 - var(--progress)) * var(--closed-y) + var(--progress) * var(--open-y)); transform: translateY(-50%); z-index: var(--depth); }
+.gyros-layer { position: absolute; inset-inline: 0; top: calc((1 - var(--spread)) * var(--closed-y) + var(--spread) * var(--open-y)); transform: translateY(-50%); z-index: var(--depth); }
 .gyros-sprite { display: block; width: 100%; aspect-ratio: 1; background: url('../public/assets/gyros-atlas.png') var(--sprite-x) var(--sprite-y) / 200% 300% no-repeat; }
-.gyros-layer > .gyros-sprite { transform: perspective(700px) rotateX(calc(55deg * var(--progress))) scale(calc(.48 - var(--progress) * .17)) rotate(calc(var(--turn) * var(--progress))); filter: drop-shadow(0 12px 13px #0009); }
+.gyros-layer > .gyros-sprite { transform: scale(calc(.48 - var(--spread) * .17)) scaleY(calc(1 - var(--spread) * .43)) rotate(calc(var(--turn) * var(--spread))); filter: drop-shadow(0 12px 13px #0009); }
 .sprite-fries { --sprite-x: 0%; --sprite-y: 0%; }
 .sprite-meat { --sprite-x: 100%; --sprite-y: 0%; }
 .sprite-tomato { --sprite-x: 0%; --sprite-y: 50%; }
@@ -70,8 +68,8 @@ body { background: var(--paper); color: var(--ink); overflow-x: clip; }
 .gyros-greens { --closed-y: 51%; --open-y: 55%; --depth: 3; --turn: 7deg; }
 .gyros-sauce { --closed-y: 53%; --open-y: 66%; --depth: 2; --turn: -4deg; }
 .gyros-pita { --closed-y: 61%; --open-y: 83%; --depth: 1; --turn: 5deg; }
-.gyros-pita > .gyros-sprite { transform: scale(calc(.48 - var(--progress) * .28)) rotate(calc(var(--turn) * var(--progress))); }
-.gyros-layer-note { position: absolute; top: 50%; left: 81%; display: flex; align-items: center; gap: 13px; width: clamp(210px, 21vw, 270px); transform: translateY(-50%); font-size: clamp(11px, 1.2vw, 16px); font-weight: 500; color: #fff1e4; opacity: clamp(0, calc(var(--progress) * 2.5 - 1), 1); }
+.gyros-pita > .gyros-sprite { transform: scale(calc(.48 - var(--spread) * .28)) rotate(calc(var(--turn) * var(--spread))); }
+.gyros-layer-note { position: absolute; top: 50%; left: 81%; display: flex; align-items: center; gap: 13px; width: clamp(210px, 21vw, 270px); transform: translateY(-50%); font-size: clamp(11px, 1.2vw, 16px); font-weight: 500; color: #fff1e4; opacity: clamp(0, calc(var(--spread) * 4 - 3), 1); }
 .gyros-layer-note i { width: 34px; flex-shrink: 0; border-top: 1px solid var(--brand-orange); }
 .gyros-layer-note small { display: block; color: var(--brand-orange); font: 500 10px/1.5 ui-monospace, monospace; }
 .gyros-seal { position: absolute; z-index: 3; padding: 16px 27px 20px; border: 2px solid #fff4e9; border-radius: 50%; text-align: center; color: #080808; background: var(--brand-orange); font: 900 clamp(24px, 3.5vw, 50px)/.83 var(--display); opacity: calc(1 - var(--progress) * 2); pointer-events: none; }
@@ -184,10 +182,10 @@ body .shop-page { --shop-light: #191715; --shop-line: #ffffff26; background: #07
   .gyros-heading { width: 97vw; top: 4%; }
   .gyros-kicker { font-size: 8px; letter-spacing: .18em; }
   .gyros-name-arc text { stroke-width: 3px; }
-  .gyros-diagram { --size: min(97vw, 67svh); left: calc(50% - var(--progress) * 17%); }
+  .gyros-diagram { --size: min(97vw, 67svh); left: calc(50% - var(--spread) * 17%); }
   .gyros-whole { height: 76%; top: 15%; }
-  .gyros-layer > .gyros-sprite { transform: perspective(650px) rotateX(calc(52deg * var(--progress))) scale(calc(.48 - var(--progress) * .07)) rotate(calc(var(--turn) * var(--progress))); }
-  .gyros-pita > .gyros-sprite { transform: scale(calc(.48 - var(--progress) * .28)) rotate(calc(var(--turn) * var(--progress))); }
+  .gyros-layer > .gyros-sprite { transform: scale(calc(.48 - var(--spread) * .07)) scaleY(calc(1 - var(--spread) * .38)) rotate(calc(var(--turn) * var(--spread))); }
+  .gyros-pita > .gyros-sprite { transform: scale(calc(.48 - var(--spread) * .28)) rotate(calc(var(--turn) * var(--spread))); }
   .gyros-layer-note { left: 76%; width: min(38vw, 160px); font-size: 12px; gap: 7px; }
   .gyros-layer-note i { width: 17px; }
   .gyros-layer-note small { font-size: 9px; }

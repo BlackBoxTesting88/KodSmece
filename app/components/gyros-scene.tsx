@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { assetPath } from '../asset-path';
+import { gyrosMotion } from './gyros-motion';
 
 import { useEffect, useId, useRef } from 'react';
 
@@ -32,14 +33,12 @@ export default function GyrosScene() {
       frame = 0;
       const travel = story.offsetHeight - stage.offsetHeight;
       const distance = -story.getBoundingClientRect().top;
-      const progress = motion.matches ? Number(expanded) : Math.min(1, Math.max(0, distance / Math.max(1, travel * .82)));
-      story.style.setProperty('--progress', progress.toFixed(3));
-      // Each side stays opaque; backface culling prevents double exposure.
-      const turn = Math.min(1, Math.max(0, (progress - .06) / .34));
-      const easedTurn = turn * turn * (3 - 2 * turn);
-      story.style.setProperty('--turn-progress', easedTurn.toFixed(4));
-      story.dataset.gyrosFace = easedTurn < .5 ? 'whole' : 'pieces';
-      toggle.setAttribute('aria-pressed', String(progress >= .8));
+      const pose = gyrosMotion(motion.matches ? Number(expanded) : distance / Math.max(1, travel * .82));
+      story.style.setProperty('--progress', pose.progress.toFixed(4));
+      story.style.setProperty('--spread', pose.spread.toFixed(4));
+      story.style.setProperty('--face-width', pose.faceWidth.toFixed(4));
+      story.dataset.gyrosFace = pose.face;
+      toggle.setAttribute('aria-pressed', String(pose.progress >= .8));
     }
     function schedule() { if (!frame) frame = requestAnimationFrame(update); }
     function toggleLayers() {
