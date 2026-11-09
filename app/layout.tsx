@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import './brand.css';
+import { CartProvider } from './naruci/cart';
 
 export const metadata: Metadata = {
   title: { default: 'Kod Šmece — Valjevo', template: '%s | Kod Šmece' },
@@ -18,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,800;0,900;1,900&family=Oleo+Script:wght@700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body id="vrh">{children}</body>
+      <body id="vrh"><CartProvider>{children}</CartProvider></body>
     </html>
   );
 }

@@ -1,6 +1,6 @@
 # Kod Šmece
 
-Next.js sajt restorana: animirani giros, meni, izbor priloga i pića, korpa i pregled porudžbine.
+Next.js sajt restorana: izbor slanog ili slatkog sveta, animirani giros, posebna stranica palačinki, meni, izbor priloga i pića i zajednička korpa.
 
 ## Lokalno pokretanje
 
@@ -35,7 +35,10 @@ Rezultat je folder `out/`. Putanje fotografija i ilustracija prolaze kroz `app/a
 
 ## Struktura
 
-- `app/home.tsx`: početna stranica.
+- `app/page.tsx`, `app/world-choice.tsx` i pripadajući CSS modul: početni izbor slanog ili slatkog sveta.
+- `app/giros/page.tsx` i `app/home.tsx`: postojeća slana stranica.
+- `app/palacinke/`: slatka stranica, fotografije i direktno dodavanje palačinki u zajedničku korpu.
+- `app/layout.tsx`: zajednički kontekst korpe za sve stranice.
 - `app/components/gyros-scene.tsx`: animacija i natpisi slojeva girosa.
 - `app/globals.css` i `app/brand.css`: stilovi početne.
 - `app/naruci/menu.ts`: jela, sastavi, fotografije i cene.

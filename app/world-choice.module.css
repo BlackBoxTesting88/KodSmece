@@ -1,0 +1,58 @@
+.page { --pink: #f1abc1; --blue: #99d8ec; --plum: #382332; --orange: #ff891c; background: #090909; color: #fff6e8; min-height: 100svh; position: relative; isolation: isolate; }
+.header { height: 70px; padding: 0 3.6vw; display: flex; align-items: center; justify-content: space-between; gap: 20px; background: #0b0b0b; position: relative; z-index: 3; }
+.wordmark { display: flex; align-items: center; gap: 10px; font: 900 24px/1 var(--display); }
+.wordmark span { color: var(--orange); font-size: 31px; }
+.header h1 { font: 500 13px/1.3 var(--body); letter-spacing: .04em; }
+.header > a { font-size: 12px; border-bottom: 1px solid #ffffff55; padding: 8px 0; }
+.header > a span { margin-left: 16px; }
+.worlds { min-height: max(690px, calc(100svh - 70px)); display: flex; position: relative; }
+.panel { flex: 1 1 50%; min-width: 0; position: relative; overflow: hidden; padding: 28px 4.2vw 25px; display: flex; flex-direction: column; isolation: isolate; transition: flex-basis .8s cubic-bezier(.2,.75,.25,1); }
+.panelTop { display: flex; justify-content: space-between; gap: 12px; font: 600 10px/1.2 var(--body); letter-spacing: .12em; position: relative; z-index: 3; }
+.savory .panelTop { color: #f0d4b1; }
+.sweet { background: var(--pink); color: var(--plum); }
+.copy { position: relative; z-index: 2; margin-top: clamp(26px, 4.6vh, 60px); pointer-events: none; }
+.copy h2 { font: 900 clamp(68px, 8.4vw, 154px)/.8 var(--display); letter-spacing: -.025em; }
+.copy h2 em { font: 700 1.02em/.85 'Oleo Script', cursive; letter-spacing: -.06em; display: inline-block; margin-left: .22em; }
+.savory h2 { color: var(--orange); }
+.savory h2 em { color: #ffcc58; }
+.sweet h2 em { color: #fff8e9; text-shadow: 2px 3px 0 #77385533; }
+.copy p { margin-top: 21px; font-size: 12px; }
+.orbit { width: 74%; aspect-ratio: 1; border: 1px solid #ff891c40; border-radius: 50%; position: absolute; top: 30%; left: 13%; z-index: -1; box-shadow: 0 0 120px #ff891c0c inset; }
+.gyros { object-fit: contain; width: 63%; height: 67%; position: absolute; left: 27%; bottom: 7.5%; transform: rotate(12deg); filter: drop-shadow(5px 20px 25px #0008); transition: transform .9s cubic-bezier(.2,.75,.25,1); }
+.blue { position: absolute; width: 120%; height: 64%; bottom: -21%; left: 5%; border-radius: 50% 50% 0 0; background: var(--blue); transform: rotate(-25deg); z-index: -1; }
+.pancake { position: absolute; object-fit: contain; width: 75%; height: auto; max-height: 61%; right: -1%; bottom: 10%; transform: rotate(-14deg); filter: drop-shadow(8px 22px 18px #54274135); transition: transform .9s cubic-bezier(.2,.75,.25,1); }
+.sticker, .sweetSticker { position: absolute; z-index: 2; font: 700 clamp(20px,2.2vw,36px)/.92 'Oleo Script', cursive; border-radius: 50%; padding: 18px 23px; text-align: center; bottom: 20%; left: 6.5%; transform: rotate(-13deg); }
+.sticker { background: #ffd05a; color: #100d08; border: 3px solid #fff6e8; }
+.sweetSticker { background: #fff6e8; color: var(--plum); bottom: 26%; left: 4%; transform: rotate(12deg); border: 2px solid var(--plum); }
+.panelBottom { display: flex; align-items: center; justify-content: space-between; margin-top: auto; position: relative; z-index: 2; padding-top: 14px; border-top: 1px solid #ffffff40; font-size: 15px; font-weight: 700; }
+.sweet .panelBottom { border-color: #38233245; }
+.arrow { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid currentColor; border-radius: 50%; font-size: 25px; transition: transform .4s, background .4s, color .4s; }
+.or { position: absolute; z-index: 4; left: 50%; top: 49%; translate: -50% -50%; display: grid; place-items: center; width: 48px; height: 48px; background: #fff6e8; color: var(--plum); font: 700 25px/1 'Oleo Script', cursive; border-radius: 50%; box-shadow: 0 2px 12px #0002; pointer-events: none; }
+.panel:focus-visible { outline-offset: -7px; outline-color: white; }
+@media (hover: hover) and (min-width: 901px) { .worlds:has(.panel:hover) .panel:hover { flex-basis: 56%; } .worlds:has(.panel:hover) .panel:not(:hover) { flex-basis: 44%; } .panel:hover .gyros { transform: rotate(6deg) translateY(-10px); } .panel:hover .pancake { transform: rotate(-7deg) translateY(-10px); } .panel:hover .arrow { transform: rotate(45deg); background: #fff6e8; color: #382332; } .sweet:hover .arrow { background: #382332; color: #fff6e8; } }
+@media (min-width: 1800px) { .copy { margin-top: 65px; } }
+@media (max-width: 900px) {
+  .header { height: 58px; padding: 0 20px; gap: 12px; }
+  .wordmark { font-size: 21px; gap: 5px; } .wordmark span { font-size: 25px; }
+  .header h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } .header > a { font-size: 11px; min-height: 44px; display: flex; align-items: center; }
+  .worlds { min-height: calc(100svh - 58px); display: grid; grid-template-rows: 1fr 1fr; }
+  .panel { min-height: 335px; padding: 16px 23px 14px; }
+  .panelTop { font-size: 8px; } .panelTop > span:last-child { display: none; }
+  .copy { margin-top: 21px; max-width: 58%; }
+  .copy h2 { font-size: clamp(58px, 14vw, 88px); line-height: .8; }
+  .copy p { font-size: 10px; max-width: 130px; margin-top: 14px; line-height: 1.4; }
+  .gyros { height: 83%; width: 48%; left: auto; right: 0; bottom: 13%; transform: rotate(14deg); }
+  .pancake { width: 55%; right: -3%; bottom: 20%; max-height: 74%; transform: rotate(-17deg); }
+  .blue { width: 89%; height: 100%; left: 48%; bottom: -28%; }
+  .orbit { width: 62%; left: 43%; top: 0; }
+  .sticker, .sweetSticker { display: none; }
+  .panelBottom { font-size: 11px; padding-top: 8px; }
+  .arrow { width: 30px; height: 30px; font-size: 20px; }
+  .or { top: 50%; width: 36px; height: 36px; font-size: 21px; }
+}
+@media (prefers-reduced-motion: reduce) { .panel, .gyros, .pancake, .arrow { transition: none; } }
+@media (hover: hover) and (min-width: 901px) {
+  .or { transition: left .8s cubic-bezier(.2,.75,.25,1); }
+  .worlds:has(.savory:hover) .or { left: 55%; }
+  .worlds:has(.sweet:hover) .or { left: 45%; }
+}

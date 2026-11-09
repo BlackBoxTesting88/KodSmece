@@ -1,0 +1,146 @@
+.page { --pink: #f2adc2; --blue: #9ad8ec; --plum: #3d2537; --cream: #fff6e8; background: var(--pink); color: var(--plum); overflow: clip; }
+.page em { color: inherit; font-family: 'Oleo Script', cursive; font-weight: 700; font-style: normal; letter-spacing: -.05em; }
+.eyebrow { font: 600 10px/1.5 var(--body); letter-spacing: .16em; }
+.header { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 14px 5vw; position: relative; z-index: 5; background: var(--pink); border-bottom: 1px solid #3d253726; min-height: 86px; }
+.logo { display: block; width: 173px; background: #070707; padding: 10px 12px; border-radius: 15px; transform: rotate(-3deg); }
+.logo img { width: 100%; height: auto; object-fit: contain; }
+.header nav { display: flex; gap: 36px; }
+.header nav a { font-size: 12px; }
+.cartLink { border: 1px solid var(--plum); border-radius: 100px; padding: 10px 12px 10px 20px; display: flex; align-items: center; gap: 23px; font-size: 12px; }
+.cartLink > span { background: var(--plum); color: var(--cream); width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; }
+.hero { height: calc(100svh - 98px); min-height: 650px; max-height: 900px; position: relative; display: grid; grid-template-columns: .95fr 1.05fr; padding: 5.5vw 5vw 100px; isolation: isolate; }
+.heroCopy { position: relative; z-index: 2; align-self: center; }
+.hero h1 { font: 900 clamp(80px, 10.5vw, 175px)/.79 var(--display); letter-spacing: -.035em; margin: 25px 0 28px; }
+.hero h1 em { font-size: 1.04em; color: #fff8ec; display: inline-block; margin-top: 13px; white-space: nowrap; text-shadow: 2px 4px 0 #6d3a5033; }
+.heroText { font-size: clamp(13px, 1.1vw, 16px); line-height: 1.7; margin-bottom: 26px; }
+.primary, .lightButton { display: inline-flex; align-items: center; gap: 36px; padding: 17px 25px; border-radius: 100px; font-size: 12px; font-weight: 700; background: var(--plum); color: var(--cream); transition: transform .25s, background .25s; }
+.primary span, .lightButton span { font-size: 21px; line-height: 1; transition: translate .25s; }
+.primary:hover, .lightButton:hover { transform: translateY(-3px); }
+.primary:hover span, .lightButton:hover span { translate: 3px -3px; }
+.heroVisual { position: relative; display: grid; place-items: center; min-height: 0; min-width: 0; }
+.halo { position: absolute; width: 130%; aspect-ratio: 1; background: var(--blue); border-radius: 50%; top: -5%; left: 0; z-index: -1; }
+.heroPlate { position: absolute; width: 112%; max-width: 790px; height: 100%; object-fit: contain; transform: rotate(-17deg); filter: drop-shadow(9px 22px 18px #49283a33); animation: plateIn 1.1s cubic-bezier(.16,1,.3,1) both; }
+.heroNote { position: absolute; z-index: 2; top: 1%; right: 0; padding: 15px 23px; border: 2px solid var(--plum); border-radius: 50%; transform: rotate(12deg); text-align: center; background: var(--cream); font: 700 25px/.9 'Oleo Script', cursive; }
+.heroNote b { font-weight: inherit; }
+.handwritten { position: absolute; left: -7%; bottom: 6%; font: 700 28px/.95 'Oleo Script', cursive; transform: rotate(-12deg); }
+.heroBottom { position: absolute; bottom: 22px; left: 5vw; right: 5vw; display: flex; justify-content: space-between; align-items: center; gap: 20px; border-top: 1px solid #3d253744; padding-top: 16px; font-size: 10px; }
+.heroBottom > span { font-size: 8px; letter-spacing: .12em; }
+.heroBottom a span { margin-left: 15px; }
+.ribbon { display: flex; align-items: center; justify-content: space-around; gap: 35px; white-space: nowrap; background: var(--plum); color: var(--pink); padding: 21px 0 26px; font: 700 clamp(29px, 3.5vw, 57px)/1 'Oleo Script', cursive; transform: rotate(-2deg) scale(1.03); position: relative; z-index: 3; }
+.ribbon i { font: normal 36px/1 var(--body); color: var(--blue); }
+.menu { padding: 120px 6vw 110px; background: linear-gradient(145deg, #f7dce7 0%, #f6e6ed 42%, #e2f2f7 100%); scroll-margin-top: 25px; }
+.menuHeading { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 65px; }
+.menuHeading h2 { font: 900 clamp(70px,7.5vw,125px)/.83 var(--display); letter-spacing: -.03em; margin-top: 22px; }
+.menuHeading h2 em { color: #96546d; }
+.menuHeading > p { font-size: 12px; line-height: 1.8; margin-bottom: 5px; }
+.products { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 60px 32px; }
+.product { min-width: 0; }
+.productPhoto { position: relative; overflow: hidden; border-radius: 48% 48% 8px 8px; background: var(--blue); }
+.product:nth-child(3n+2) .productPhoto { border-radius: 8px; }
+.productPhoto img { aspect-ratio: 1.06; height: auto; object-position: center 67%; transition: transform .65s cubic-bezier(.2,.65,.25,1); }
+.product:nth-child(5) .productPhoto img { object-position: center bottom; }
+.product:hover .productPhoto img { transform: scale(1.035); }
+.productIndex { position: absolute; z-index: 1; top: 18px; left: 18px; background: var(--cream); border-radius: 50%; width: 32px; height: 32px; display: grid; place-items: center; font: 500 10px/1 monospace; }
+.quantity { position: absolute; bottom: 13px; right: 13px; background: var(--cream); padding: 7px 13px; border-radius: 25px; font-size: 10px; }
+.productTitle { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-top: 20px; }
+.productTitle h3 { font: 700 clamp(25px,2.3vw,38px)/1 'Oleo Script', cursive; letter-spacing: -.025em; max-width: 73%; }
+.productTitle > strong { font: 600 11px/1.3 var(--body); white-space: nowrap; padding-top: 6px; }
+.ingredients { font: 400 11px/1.7 var(--body); opacity: .85; margin-top: 12px; min-height: 57px; }
+.add { width: 100%; display: flex; align-items: center; justify-content: space-between; border: 1px solid #3d253750; border-radius: 100px; padding: 12px 16px 12px 20px; background: transparent; color: var(--plum); font: 600 11px/1.3 var(--body); cursor: pointer; margin-top: 16px; transition: background .25s, border-color .25s; min-height: 45px; }
+.add span:last-child { font-size: 22px; line-height: 1; }
+.add:hover { background: var(--blue); border-color: var(--blue); }
+.add:disabled { opacity: .5; cursor: wait; }
+.textLink { display: table; margin: 55px auto 0; border-bottom: 1px solid #3d25375c; padding: 0 0 10px; font-size: 12px; }
+.textLink span { margin-left: 25px; }
+.bajadera { background: #100d0b; color: #f3c4a1; display: grid; grid-template-columns: 1fr 1fr; padding: 80px 9vw; gap: 6vw; align-items: center; position: relative; }
+.bajaderaCopy { padding: 30px 0; }
+.bajadera h2 { font: 900 clamp(60px,6.7vw,108px)/.9 var(--display); letter-spacing: -.025em; margin: 30px 0 25px; }
+.bajadera h2 em { font-size: .76em; color: #e9b8b7; white-space: nowrap; }
+.bajaderaCopy > p:not(.eyebrow) { font-size: 14px; line-height: 1.8; }
+.lightButton { background: #f4c8d6; color: #3d2537; margin-top: 30px; gap: 20px; font-size: 10px; }
+.bajaderaStamp { display: block; width: fit-content; margin: 40px 0 0 28px; font: 700 32px/.9 'Oleo Script', cursive; transform: rotate(-12deg); }
+.bajaderaPhoto { max-width: 400px; width: 100%; justify-self: center; transform: rotate(4deg); box-shadow: 0 16px 70px #0007; }
+.bajaderaPhoto img { width: 100%; height: auto; }
+.together { position: relative; isolation: isolate; display: grid; grid-template-columns: 1fr 1fr; background: var(--blue); padding: 80px 8vw 90px; align-items: center; min-height: 570px; }
+.together h2 { font: 900 clamp(60px,6.7vw,105px)/.87 var(--display); letter-spacing: -.03em; margin: 24px 0; }
+.together h2 em { color: #88516a; white-space: nowrap; }
+.togetherCopy > p:not(.eyebrow) { font-size: 13px; line-height: 1.8; margin-bottom: 27px; }
+.togetherPhoto { position: relative; height: 430px; }
+.togetherPhoto::before { content: ''; position: absolute; inset: 5% -6%; background: var(--pink); border-radius: 50%; z-index: -1; transform: rotate(-20deg); }
+.togetherPhoto img { object-fit: contain; height: 100%; transform: rotate(17deg); filter: drop-shadow(8px 17px 15px #3d253738); }
+.togetherPhoto > span { position: absolute; right: -2%; bottom: 12%; background: #fff6e8; border: 2px solid #3d2537; padding: 15px 22px; border-radius: 50%; transform: rotate(-10deg); font: 700 23px/.9 'Oleo Script', cursive; text-align: center; }
+.footer { background: #100e10; color: #fbeadf; display: grid; grid-template-columns: 1fr 1.2fr .7fr; gap: 35px; padding: 50px 6vw 60px; font-size: 12px; align-items: center; }
+.footerBrand > a { display: block; max-width: 180px; }
+.footerBrand img { width: 100%; height: auto; }
+.footerBrand :global(.footer-socials) { margin-top: 16px; }
+.footerLabel { display: block; font-size: 8px; letter-spacing: .15em; opacity: .6; margin-bottom: 11px; }
+.footer address { font-style: normal; }
+.footer :global(.hours-status) { font-size: 10px; margin-top: 12px; }
+.footerLinks { display: flex; flex-wrap: wrap; gap: 12px 20px; }
+.footerLinks > a:first-child { flex-basis: 100%; font-size: 18px; }
+.footerLinks > a:not(:first-child) { font-size: 10px; }
+.basket { position: fixed; bottom: 22px; right: 26px; z-index: 10; background: var(--plum); color: var(--cream); display: flex; gap: 35px; align-items: center; padding: 14px 20px; border-radius: 100px; box-shadow: 0 5px 25px #26122430; border: 1px solid #fff5; font-size: 12px; }
+.basket b { display: inline-grid; place-items: center; border-radius: 50%; width: 24px; height: 24px; background: var(--pink); color: var(--plum); margin-left: 8px; }
+.basket strong { font-size: 12px; font-weight: 500; }
+.basket strong span { margin-left: 13px; }
+@keyframes plateIn { from { opacity: 0; transform: translateY(25px) rotate(-10deg); } to { opacity: 1; transform: translateY(0) rotate(-17deg); } }
+@media (min-width: 1700px) { .hero { padding-top: 70px; padding-bottom: 100px; } }
+@media (max-width: 1000px) { .hero h1 { font-size: 11vw; } .menuHeading > p { max-width: 250px; } .products { gap: 40px 23px; } .productTitle { flex-direction: column; gap: 4px; } .productTitle h3 { max-width: 100%; } .productTitle > strong { padding-top: 0; } .bajadera { padding-inline: 7vw; } }
+@media (max-width: 700px) {
+  .header { min-height: 72px; padding: 11px 20px; gap: 12px; }
+  .logo { width: 119px; border-radius: 10px; padding: 7px 9px; }
+  .header nav { gap: 0; } .header nav a:first-child { display: none; } .header nav a { font-size: 10px; }
+  .cartLink { padding: 7px 8px 7px 12px; gap: 9px; font-size: 11px; min-height: 44px; } .cartLink > span { width: 23px; height: 23px; }
+  .hero { display: block; height: auto; min-height: 0; max-height: none; padding: 38px 23px 72px; }
+  .eyebrow { font-size: 8px; }
+  .heroCopy { z-index: 2; }
+  .hero h1 { font-size: clamp(77px,20vw,130px); margin: 18px 0 18px; }
+  .hero h1 em { margin-top: 4px; }
+  .heroText { font-size: 11px; line-height: 1.6; margin-bottom: 19px; }
+  .primary { padding: 13px 18px; font-size: 10px; gap: 25px; }
+  .heroVisual { width: 100%; min-height: 0; height: 83vw; margin-top: 6px; }
+  .heroPlate { width: 94%; height: auto; max-width: 450px; }
+  .halo { width: 120%; left: 19%; top: 4%; }
+  .heroNote { top: 3%; right: -3%; padding: 13px 18px; font-size: 20px; }
+  .handwritten { font-size: 22px; left: -1%; bottom: 0; }
+  .heroBottom { bottom: 20px; left: 23px; right: 23px; font-size: 9px; }
+  .heroBottom > span, .heroBottom > a:last-child { display: none; }
+  .ribbon { padding: 18px 0 23px; gap: 24px; font-size: 32px; }
+  .menu { padding: 75px 23px 70px; }
+  .menuHeading { display: block; margin-bottom: 35px; }
+  .menuHeading h2 { font-size: clamp(68px,17vw,100px); margin-top: 15px; }
+  .menuHeading > p { font-size: 10px; margin-top: 22px; max-width: none; }
+  .products { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 35px 16px; }
+  .productPhoto img { aspect-ratio: .83; }
+  .productIndex { width: 25px; height: 25px; font-size: 8px; top: 10px; left: 10px; }
+  .productTitle { margin-top: 13px; gap: 8px; }
+  .productTitle h3 { font-size: 25px; }
+  .productTitle strong { font-size: 10px; }
+  .ingredients { font-size: 11px; line-height: 1.6; min-height: 82px; margin-top: 9px; }
+  .add { padding: 10px 11px; font-size: 11px; min-height: 44px; margin-top: 10px; }
+  .quantity { padding: 5px 8px; font-size: 8px; bottom: 8px; right: 8px; }
+  .textLink { font-size: 10px; margin-top: 35px; }
+  .bajadera { grid-template-columns: 1fr; padding: 60px 26px; gap: 30px; }
+  .bajaderaCopy { padding: 0; }
+  .bajadera h2 { font-size: 66px; margin: 22px 0; }
+  .bajaderaCopy > p:not(.eyebrow) { font-size: 12px; }
+  .lightButton { margin-top: 24px; padding: 14px 19px; }
+  .bajaderaStamp { display: none; }
+  .bajaderaPhoto { max-width: 300px; transform: rotate(3deg); }
+  .together { display: block; padding: 65px 26px 40px; }
+  .together h2 { font-size: clamp(57px,14vw,80px); margin: 20px 0; }
+  .togetherCopy > p:not(.eyebrow) { font-size: 11px; }
+  .togetherPhoto { height: 330px; margin: 25px 15px 0; }
+  .togetherPhoto::before { inset: 7% 0; }
+  .togetherPhoto > span { right: -3%; font-size: 20px; }
+  .footer { grid-template-columns: 1fr; padding: 35px 26px 100px; gap: 28px; }
+  .footerBrand { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+  .footerBrand > a { width: 140px; }
+  .footerBrand :global(.footer-socials) { margin-top: 0; }
+  .footerLinks { gap: 14px 25px; }
+  .basket { bottom: 14px; left: 18px; right: 18px; justify-content: space-between; padding: 12px 17px; }
+}
+@media (max-width: 360px) { .products { grid-template-columns: 1fr; } .productPhoto img { aspect-ratio: 1.2; } .ingredients { min-height: 0; font-size: 11px; } .productTitle h3 { font-size: 30px; } .header { padding-inline: 14px; gap: 9px; } }
+@media (prefers-reduced-motion: reduce) { .heroPlate { animation: none; } .page *, .page *::before, .page *::after { transition: none !important; } }
+
+@media (min-width: 701px) and (max-width: 1000px) { .hero { height: 680px; min-height: 0; } .halo { top: 12%; } .heroNote { top: 8%; } .heroPlate { width: 120%; } .handwritten { bottom: 5%; } }

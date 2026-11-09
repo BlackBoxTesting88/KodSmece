@@ -1,0 +1,10 @@
+.actions { display: flex; align-items: center; gap: clamp(14px, 2vw, 30px); }
+.switch { font-size: 13px; white-space: nowrap; }
+.switch span { margin-left: 5px; }
+.switch:hover { text-decoration: underline; text-underline-offset: 5px; }
+@media (max-width: 760px) { .actions { gap: 12px; } .switch { font-size: 11px; } .switch span { display: none; } }
+@media (max-width: 370px) { .actions { gap: 8px; } .switch { max-width: 40px; white-space: normal; line-height: 1.15; } }
+@media (max-width: 370px) {
+  .actions :global(.order) { padding-inline: 10px; gap: 8px; font-size: 11px; white-space: nowrap; }
+  .actions :global(.order) span { display: none; }
+}

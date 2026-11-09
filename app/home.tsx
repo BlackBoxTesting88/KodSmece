@@ -9,6 +9,7 @@ import BrandLogo from './components/brand-logo';
 import HoursStatus from './components/hours-status';
 import SocialIcons from './components/social-icons';
 import StickerPeel from './components/sticker-peel';
+import WorldActions from './components/world-actions';
 
 export default function Home() {
   const [activeChapter, setActiveChapter] = useState('giros');
@@ -32,7 +33,7 @@ export default function Home() {
   <header className="top">
     <a className="logo" href="#vrh" aria-label="Kod Šmece, početna"><BrandLogo /></a>
     <nav aria-label="Glavna navigacija"><a href="#meni">Naš meni</a><a href="#lokacija">Lokacija</a></nav>
-    <Link className="order" href="/naruci/">Naruči <span aria-hidden="true">↗</span></Link>
+    <WorldActions />
   </header>
   <main>
     <GyrosScene />
@@ -104,7 +105,7 @@ export default function Home() {
         <BrandLogo sweet />
         <p className="poster-sticker">SLATKA STRANA ŠMECE</p>
         <h2 id="sweet-title">Šmecine<br /><em>palačinke.</em></h2>
-        <Link className="sweet-link" href="/naruci/#palacinke">Pogledaj slatku ponudu <span aria-hidden="true">↗</span></Link>
+        <Link className="sweet-link" href="/palacinke/">Otkrij slatki svet <span aria-hidden="true">↗</span></Link>
       </div>
       <div className="sweet-photos">
         <figure className="sweet-photo-main"><img src={assetPath("/assets/10.webp")}  alt="Palačinka sa čokoladnim prelivom i keksom na plavom tanjiru" width="585" height="780" loading="lazy" /></figure>
@@ -139,6 +140,7 @@ export default function Home() {
       <div className="footer-brand">
         <a className="logo" href="#vrh" aria-label="Kod Šmece, na početak"><BrandLogo /></a>
         <a className="footer-link" href="#vrh">Na početak ↑</a>
+        <Link className="footer-link" href="/palacinke/">Slatki svet ↗</Link>
         <SocialIcons />
       </div>
       <div className="footer-location">
